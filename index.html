@@ -569,8 +569,14 @@ pre {
 
         <div class="flex-row">
             <p> 
-                The overall modular framework consists of five modules: observation, belief, communication, reasoning, and planning. At each step, we first process the raw observation received with an <em>Observation Module</em>, then update the agent's inner belief of the scene and the other agents through a <em>Belief Module</em>, this belief is then used with the previous actions and dialogues to construct the prompt for the <em>Communication Module</em> and the <em>Reasoning Module</em> which utilizes Large Language Models to generate messages and decide on high-level plans. Finally, a <em>Planning Module</em> gives the primitive action to take in this step according to the high-level plan.
-            </p>
+                Inspired by the cognitive architectures, we build <em>CoELA</em>, a Cooperative Embodied Language Agent with novel modular framework integrating the strong reasoning ability and language generation capability of LLMs. As shown in the following figure,  <em>CoELA</em> consists of five key modules: (a) Perception, (b) Memory, (c) Communication, (d) Planning, and (e) Execution. 
+
+		At each interaction step, <em>CoELA</em> first uses (a) Perception Module to perceive the raw sensory observation received from the environment, then updates the (b) Memory Module with extracted new information, which stores its knowledge and experience of the world and others. 
+
+		<em>CoELA</em> tackles the challenge of efficient communication with a two-step method: first decide on <em>what</em> to send, then decide <em>whether</em> to send this message or choose another plan by deliberately using (c) The <em>Communication Module</em> to retrieve related information from (b) and utilize an LLM to generate the best message to send "in mind" beforehand, then leverages (d) the <em>Planning Module</em> driven by LLM with strong reasoning ability to make the decision on which plan to take given the related information retrieved from (b) and available actions proposed regarding the current state. The generated plan is then used to update (b2) the Episodic Memory.
+
+		Finally, (e) the <em>Execution Module</em> retrieves procedural knowledge stored in (b3) to turn the high-level plan into primitive actions executable in the environment.
+	    </p>
         </div>
 
         <figure>
@@ -578,8 +584,8 @@ pre {
                 <img width="100%" src="figure/framework_v7.png"> 
             </a>
             <p class="caption">
-                An overview of our framework, consisting of five modules: observation, belief, communication, reasoning, and planning, where the Communication Module and the Reasoning Module leverage Large Language Models to generate messages and decide on high-level plans.
-            </p> <br>
+                An overview of <em>CoELA</em>. There are five key modules in our framework: (c) The Communication Module and (d) the Planning Module leverage LLMs to generate messages and make plans, (b) The Memory Module stores the agent's knowledge and experience about the world and others in semantic, episodic and procedural memory respectively,  (a) The Perception Module and (e) the Execution Module interact directly with the external environment by perceiving raw observations and generating primitive actions.
+	    </p> <br>
         </figure>
         </center>
     </section>
